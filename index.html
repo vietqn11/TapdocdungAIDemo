@@ -63,7 +63,7 @@ interface EvaluationResult {
 
 interface StudentInfo {
   name: string;
-  class: string;
+  studentClass: string;
 }
 
 type Page = 'welcome' | 'passage-list' | 'reading' | 'evaluation';
@@ -262,7 +262,7 @@ async function saveEvaluationToSheet(
 
     const formData = new FormData();
     formData.append('name', studentInfo.name);
-    formData.append('class', studentInfo.class);
+    formData.append('class', studentInfo.studentClass);
     formData.append('passageTitle', passage.title);
     formData.append('totalScore', result.tongDiem.toString());
     formData.append('fluency', result.doLuuLoat.toString());
@@ -461,7 +461,7 @@ function WelcomeScreen({ onStart }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim() && studentClass.trim()) {
-      onStart({ name, class: studentClass });
+      onStart({ name, studentClass });
     }
   };
 
@@ -748,7 +748,7 @@ function EvaluationView({ result, studentInfo, passage, onChooseAnotherPassage, 
         <header className="text-center border-b pb-6 mb-6">
           <h1 className="text-4xl font-extrabold text-gray-800">Kết quả luyện đọc</h1>
           <p className="text-lg text-gray-600 mt-2">
-            Bài: <span className="font-semibold">{passage.title}</span> | Học sinh: <span className="font-semibold">{studentInfo.name}</span> - Lớp: <span className="font-semibold">{studentInfo.class}</span>
+            Bài: <span className="font-semibold">{passage.title}</span> | Học sinh: <span className="font-semibold">{studentInfo.name}</span> - Lớp: <span className="font-semibold">{studentInfo.studentClass}</span>
           </p>
         </header>
 
